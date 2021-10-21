@@ -1,36 +1,51 @@
 <template>
-  <p>{{ name }} - {{ age }}</p>
-  <button @click="changeName('Zelda')">change name</button>
-  <button @click="changeAge(20)">change age</button>
+  <div class="app">
+    <JobsList :jobs="jobs" />
+  </div>
 </template>
 ㄑ
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from "vue";
+import JobsList from "./components/JobsList.vue";
+import Job from "./types/Job";
 
 export default defineComponent({
   name: "App",
-  components: {},
+  components: { JobsList },
   setup() {
-    // const state = reactive({
-    //   name: "link",
-    //   age: 34 as number | string,
-    // });
-    // return { ...toRefs(state) };
-
-    const name = ref("link");
-    const age = ref<number | string>(25);
-
-    return { name, age };
-  },
-  methods: {
-    changeName(name: string) {
-      this.name = name;
-      return name;
-    },
-    changeAge(age: number | string) {
-      this.age = age;
-      return age;
-    },
+    const jobs = ref<Job[]>([
+      {
+        title: "farm worker",
+        location: "lon lon ranch",
+        salary: 30000,
+        id: "1",
+      },
+      {
+        title: "quarryman",
+        location: "death mountain",
+        salary: 40000,
+        id: "2",
+      },
+      {
+        title: "flute player",
+        location: "the lost words",
+        salary: 35000,
+        id: "3",
+      },
+      {
+        title: "fisherman",
+        location: "laker hylia",
+        salary: 21000,
+        id: "4",
+      },
+      {
+        title: "prison guard",
+        location: "gerudo valley",
+        salary: 32000,
+        id: "5",
+      },
+    ]);
+    return { jobs };
   },
 });
 </script>
