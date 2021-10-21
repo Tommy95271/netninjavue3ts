@@ -5,16 +5,22 @@
 </template>
 ㄑ
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive, ref, toRefs } from "vue";
 
 export default defineComponent({
   name: "App",
   components: {},
-  data() {
-    return {
-      name: "link",
-      age: 25 as number | string, // type assertion
-    };
+  setup() {
+    // const state = reactive({
+    //   name: "link",
+    //   age: 34 as number | string,
+    // });
+    // return { ...toRefs(state) };
+
+    const name = ref("link");
+    const age = ref<number | string>(25);
+
+    return { name, age };
   },
   methods: {
     changeName(name: string) {
